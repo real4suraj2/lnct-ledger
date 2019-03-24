@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>MiniLedger</title>
+</head>
+
+
+<body>
+<strong>{{name}}</strong>
+<br>
+<strong>{{branch}}</strong>
+<br>
+<strong>Total Lectures:{{t}}
+<br>
+Total Lectures Attended:{{pr}}
+<br>
+Attendance:{{p}}
+<br>
+Day(s) Needed To Have A Attendance of {{newincreased}} :{{d}} 
+<br>
+You Can Take Leave For {{f}} day(s), Your Attendance Will Be Still :{{newdecreased}}
+</strong>
+<br>
+Enter the no. of days you (+)want to come regularly | (-)want to have a leave 
+<br>
+<select id="extract">
+<option value="+">+</option>
+<option value="-">-</option>
+</select>
+<input type="number" id="calculateme" placeholder="Enter here">
+<br>
+<button id="forfun" onclick="calculator()">Submit</button>
+<br>
+<p class="text-light bg-dark" id="result-displayer"></p>
+<script>
+var calculator=()=>{
+var value=document.getElementById('calculateme').value;
+if((!value) || value<1 )
+{
+document.getElementById('forfun').innerText='Try Again!';
+}
+else{
+var currentTotal=parseInt({{t}});
+var currentPresent=parseInt({{pr}});
+var option=document.getElementById('extract').value;
+var percentage=0;
+if(option==="+")
+percentage=((currentPresent+(7*value))/(currentTotal+(7*value))*100).toFixed(2);
+else
+percentage=((currentPresent)/(currentTotal+(7*value))*100).toFixed(2);
+var text=option==="+"?"If you will attend classes regularly for ":"If you are taking leave continuously for "
+document.getElementById('result-displayer').innerText=text+value+" day(s) ;then your attendance percentage will change to "+percentage +"%"; 
+}
+}
+</script>
+</body>
+</html>

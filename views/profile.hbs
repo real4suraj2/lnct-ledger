@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+      <title>LnctLedger</title>
+   </head>
+   <style>
+      @media (min-width:668px){
+      #backgrounddec{
+      background: url(https://source.unsplash.com/1080x1350/?nature,water,technology,sci-fi) no-repeat;
+      background-position: center;
+      width:100%;
+      height:100%;
+      background-size:100%;
+      }
+      }
+      @media (max-width:667px){
+      #backgrounddec{
+      background:linear-gradient(#acb6e5,#86fde8) no-repeat;
+      height:100%;
+      width:100%;
+      }
+      }
+   </style>
+   <body  id ="backgrounddec"  >
+      <!-- Modal -->
+      <div class="modal fade" id="LedgerModal" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="LedgerModalLabel">Mini Ledger</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <p class="text-secondary">Running on a slow internet connection, try the mini ledger  <a href="/miniLedger" class="Link">Link</a> </p>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="ApiModal" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="ApiModalLabel">Mini Ledger</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <p class="text-secondary">Do you want to create your own app by using the scrapped data ,Try our API  <a href="/apiHelp" class="Link">Link</a> </p>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <a class="navbar-brand" href="/">LNCT-LEDGER</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item active">
+                  <a class="nav-link"  href="/">Home <span class="sr-only">(current)</span></a>
+               </li>
+               <li class="nav-item active">
+                  <a class="nav-link" data-toggle="modal" data-target="#LedgerModal" role ="button" >MiniLedger <span class="sr-only">(current)</span></a>
+               </li>
+               <li class="nav-item active">
+                  <a class="nav-link" data-toggle="modal" data-target="#ApiModal" role ="button" >RestAPI <span class="sr-only">(current)</span></a>
+               </li>
+            </ul>
+         </div>
+      </nav>
+      <div class="container">
+         <div class="row">
+            <div class="col-md align-self-center" >
+               <img src="{{i}}" alt="StudentImg" class="img-fluid" style="  display: block;
+                  margin-left: auto;
+                  margin-right: auto;
+                  width: 50%; border-radius:20px;
+                  max-width:150px;"
+                  >
+               <strong class="btn btn-info" style="display:block; margin-top:1.3rem;">{{name}}</strong>
+               <strong class="btn btn-secondary" style="display:block;white-space:normal;">{{branch}}</strong>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md align-self-start">
+               <button class="btn btn-info"><strong>Total Lectures: {{t}}</strong></button>
+            </div>
+            <div class="col-md align-self-end" >
+               <button class="btn btn-{{color}} d-block float-md-right"<strong >Total Lectures Atttended: {{pr}}</strong></button>
+            </div>
+         </div>
+         <br><br><br>
+         <div class="row">
+            <div class="col-md align-self-center">
+               <button class="btn btn-{{color}}" data-toggle="popover" title="Your Attendance Percentage" data-trigger="focus" data-placement="right"><strong>YOUR ATTENDANCE</strong></button>
+               <div class="progress mb-2" style="height:2rem;">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-{{color}}" role="progressbar"  aria-valuenow="{{p}}" aria-valuemin="0" aria-valuemax="100" style="width: {{p}}%;">{{p}} %</div>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md align-self-center">
+               <button id="media1" class="btn btn-outline-{{colorn}}" data-toggle="popover" title="Your Attendance Percentage after the criteria" data-trigger="focus" data-placement="right" style="white-space:normal!important;"><strong>You Need Just {{d}} day(s) to have a attendance of {{newincreased}} % </strong></button>
+               <div class="progress mb-2" style="height:2rem;">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-{{colorn}}" role="progressbar"  aria-valuenow="{{newincreased}}" aria-valuemin="0" aria-valuemax="100" style="width: {{newincreased}}%; white-space: normal;">{{newincreased}} %</div>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md align-self-center">
+               <button id="media2" class="btn btn-outline-{{colord}}" data-toggle="popover" title="Your Attendance Percentage after the criteria" data-trigger="focus" data-placement="right" style="white-space:normal!important;"><strong>You Can Take Leave For {{f}} day(s) ,Your Attendance Will Be Still {{newdecreased}} % </strong></button>
+               <div class="progress mb-2" style="height:2rem;">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-{{colord}}" role="progressbar"  aria-valuenow="{{newdecreased}}" aria-valuemin="0" aria-valuemax="100" style="width: {{newdecreased}}%; white-space: normal;">{{newdecreased}} %</div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="container">
+         <button id="goDown" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+         Dynamic Attendance Calculator
+         </button>
+         <div class="collapse" id="collapseExample">
+            <div class="card-header text-light bg-dark">
+               Enter the no. of days you (+)want to come regularly | (-)want to have a leave 
+            </div>
+            <div class="card card-body">
+               <div class="row form-group no-gutters">
+                  <div class="col-md ">
+                     <select id="extract" style="display:block;height:100%;">
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                     </select>
+                  </div>
+                  <div class="col-md">
+                     <input type="number" id="calculateme" placeholder="Enter here" class="form-control" style="display:block;">
+                  </div>
+                  <div class="col-md"><button class="btn btn-primary" id="forfun" onclick="calculator()" style="display:block;width:33vw;">Submit</button></div>
+               </div>
+               <p class="text-light bg-dark" id="result-displayer"></p>
+            </div>
+         </div>
+      </div>
+      <div id="main-footer" class="text-center bg-dark text-light p-2">
+            <div class="row align-items-center">
+               
+               <div class="col">
+                  App By <a class="link " href="https://github.com/real4suraj2/" >Suraj</a>
+               </div>
+               <div class="col">
+                  LnctLedger
+                  
+               </div>
+               <div class="col">
+                 Share : <a href="whatsapp://send?text=!! Attendance Simplified !! Visit : https://newlnct.herokuapp.com"> <i class="fab fa-whatsapp" style="font-size:1.5rem;text-decoration:none;color:#25D366;"></i></a>
+               </div>
+            </div>
+      </div>
+
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <script>
+         $(function () {
+           $('[data-toggle="popover"]').popover()
+         })
+         $('.popover-dismiss').popover({
+           trigger: 'focus'
+         })
+         $('#collapseExample .collapse').collapse()
+          $('#year').text(new Date().getFullYear());
+         
+         var calculator=()=>{
+         var value=document.getElementById('calculateme').value;
+         if((!value) || value<1 )
+         {
+         document.getElementById('forfun').innerText='Try Again!';
+         }
+         
+         else{
+         document.getElementById('forfun').innerText='Submit';
+         var currentTotal=parseInt({{t}});
+         var currentPresent=parseInt({{pr}});
+         var option=document.getElementById('extract').value;
+         var percentage=0;
+         if(option==="+")
+         percentage=((currentPresent+(7*value))/(currentTotal+(7*value))*100).toFixed(2);
+         else
+         percentage=((currentPresent)/(currentTotal+(7*value))*100).toFixed(2);
+         var text=option==="+"?"If you will attend classes regularly for ":"If you are taking leave continuously for "
+         document.getElementById('result-displayer').innerText=text+value+" day(s) ,then your attendance percentage will change to "+percentage +"%"; 
+         }
+         }
+         $("#goDown").click(function() {
+  $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+
+});​
+
+
+
+      </script>
+   </body>
+</html>
+
+
