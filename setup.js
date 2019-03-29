@@ -72,41 +72,58 @@ function setup(username, password, callback) {
           freedays--;
           garbage[5] = present / (total + 7 * freedays);
           imgPath = "";
-          request(
-            {
-              url:
-                "http://lnct.lnct.ac.in/Accsoft2/Parents/ParentDashBoard.aspx",
-              jar: cookie
-            },
-            (err, res, body) => {
-              var $ = cheerio.load(body);
-              var img = $("img");
-              imgPath = img[3].attribs.src;
-              imgPath =
-                "http://lnct.lnct.ac.in/Accsoft2" +
-                imgPath.substr(2, imgPath.length);
-              if (total) {
-                var name = $(
-                  'td[class="TopMenuTD_2"]'
-                )[2].children[0].data.trim();
-                var branch = $(
-                  'td[class="TopMenuTD_2"]'
-                )[6].children[0].data.trim();
-              }
-              callback(
-                days,
-                freedays,
-                (percentage * 100).toFixed(2),
-                imgPath,
-                total,
-                present,
-                (garbage[4] * 100).toFixed(2),
-                (garbage[5] * 100).toFixed(2),
-                name,
-                branch
-              );
+		if(total)
+		{
+          	request(
+            	{
+              	url:
+                	"http://lnct.lnct.ac.in/Accsoft2/Parents/ParentDashBoard.aspx",
+              	jar: cookie
+            	},
+            	(err, res, body) => {
+              		var $ = cheerio.load(body);
+              		var img = $("img");
+              		imgPath = img[3].attribs.src;
+				      imgPath =
+				        "http://lnct.lnct.ac.in/Accsoft2" +
+				        imgPath.substr(2, imgPath.length);
+				      if (total) {
+				        var name = $(
+				          'td[class="TopMenuTD_2"]'
+				        )[2].children[0].data.trim();
+				        var branch = $(
+				          'td[class="TopMenuTD_2"]'
+				        )[6].children[0].data.trim();
+				      }
+				      callback(
+				        days,
+				        freedays,
+				        (percentage * 100).toFixed(2),
+				        imgPath,
+				        total,
+				        present,
+				        (garbage[4] * 100).toFixed(2),
+				        (garbage[5] * 100).toFixed(2),
+				        name,
+				        branch
+				      );
             }
           );
+	}
+else
+			callback(
+				        0,
+				        0,
+				        0,
+				        0,
+				        0,
+				        0,
+				        0,
+				        0,
+				        0,
+				        0
+				      );
+
         }
       );
     }
