@@ -95,6 +95,13 @@ function setup(username, password, callback) {
 				          'td[class="TopMenuTD_2"]'
 				        )[6].children[0].data.trim();
 				      }
+				      if(freedays<0)
+				      {
+				      garbage[5]=percentage;
+				      freedays='Sorry but taking more leaves will result in further fall of your attendence'
+				      }
+				      else
+				      freedays='You can have leave for '+freedays+', your attendance will be still '+(garbage[5]*100).toFixed(2)+ " %";
 				      callback(
 				        days,
 				        freedays,
