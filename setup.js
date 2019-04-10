@@ -101,7 +101,7 @@ function setup(username, password, callback) {
 				      freedays='Sorry but taking more leaves will result in further fall of your attendence'
 				      }
 				      else
-				      freedays='You can have leave for '+freedays+', your attendance will be still '+(garbage[5]*100).toFixed(2)+ " %";
+				      freedays='You can have leave for '+freedays+' day(s), your attendance will be still '+(garbage[5]*100).toFixed(2)+ " %";
 				      callback(
 				        days,
 				        freedays,
