@@ -36,7 +36,7 @@ function setup(username, password, callback) {
       request.get(
         {
           url:
-            "http://lnct.lnct.ac.in/Accsoft2/Parents/StuAttendanceStatus.aspx",
+            "http://115.254.62.23/Accsoft2/Parents/StuAttendanceStatus.aspx",
 
           jar: cookie
         },
@@ -77,7 +77,7 @@ function setup(username, password, callback) {
           	request(
             	{
               	url:
-                	"http://lnct.lnct.ac.in/Accsoft2/Parents/ParentDashBoard.aspx",
+                	"http://115.254.62.23/Accsoft2/Parents/ParentDashBoard.aspx",
               	jar: cookie
             	},
             	(err, res, body) => {
