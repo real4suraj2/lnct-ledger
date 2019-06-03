@@ -27,7 +27,7 @@ function setup(username, password, callback) {
   var cookie = request.jar();
   request(
     {
-      url: "http://lnct.lnct.ac.in/Accsoft2/Login.aspx",
+      url: "http://115.254.62.23/Accsoft2/Login.aspx",
       form: login,
       method: "POST",
       jar: cookie
