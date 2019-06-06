@@ -2,7 +2,7 @@ const express=require('express')
 var fs=require('fs')
 const bodyParser=require('body-parser')
 const {setup}=require('./setup')
-const {ledge}=require('./firebase')
+//const {ledge}=require('./firebase')
 const port=process.env.PORT || 3000
 const hbs=require('hbs')
 const app=express()
@@ -27,7 +27,7 @@ res.render("index.hbs",{begin:x[0],end:x[1]})
 })
 app.use('/profile',(req,res,next)=>{
 setup(req.body.username,req.body.password,(d,f,p,i,t,pr,newincreased,newdecreased,name,branch)=>{
-if(t)
+if(t!==undefined)
 {
 colorizer((x)=>{
 res.render('profile.hbs',{
@@ -44,7 +44,7 @@ begin:x[0],
 end:x[1]
 })
 })
-ledge(name,branch)
+//ledge(name,branch)
 }
 else
 {
@@ -61,7 +61,7 @@ res.sendFile(__dirname+"/public/miniledger.html");
 
 app.post('/profileMini',(req,res)=>{
 setup(req.body.username,req.body.password,(d,f,p,i,t,pr,newincreased,newdecreased,name,branch)=>{
-if(t)
+if(t!==undefined)
 {
 res.render('profileMini.hbs',{
 d,f,
@@ -71,7 +71,7 @@ pr,
 newincreased,newdecreased,name,branch
 
 })
-ledge(name,branch)
+//ledge(name,branch)
 }
 else
 res.sendFile(__dirname+"/public/errorMini.html")
@@ -87,7 +87,7 @@ var password=req.query.password;
 if(username&&password)
 {
 setup(username,password,(d,f,p,i,t,pr,newincreased,newdecreased,name,branch)=>{
-if(t)
+if(t!==undefined)
 {res.status(200);
 res.send({name,branch,percentage:p,daysNeeded:d,daysFree:f,totalLectures:t,totalPresent:pr,attendanceAfterInc:newincreased,attendanceAfterDec:newdecreased})
 }
@@ -111,7 +111,7 @@ var password=req.body.password;
 if(username&&password)
 {
 setup(username,password,(d,f,p,i,t,pr,newincreased,newdecreased,name,branch)=>{
-if(t)
+if(t!==undefined)
 {res.status(200);
 res.send({name,branch,percentage:p,daysNeeded:d,daysFree:f,totalLectures:t,totalPresent:pr,attendanceAfterInc:newincreased,attendanceAfterDec:newdecreased})
 }
